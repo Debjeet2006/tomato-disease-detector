@@ -139,12 +139,15 @@ def load_class_data():
 @st.cache_resource
 def load_disease_model():
     ensure_model_exists()
-    return load_model(MODEL_PATH,compile=False)
+    try:
+        model = load_model(MODEL_PATH, compile=False)
+        return model
+    except Exception as e:
+        st.error(f"❌ Failed to load model:\n\n**{type(e).__name__}**: {e}")
+        raise
     
 model = load_disease_model()
-
 class_names = load_class_data()
-model = load_disease_model()
 
 st.markdown("""
 <div class="header-container">
