@@ -20,14 +20,13 @@ MODEL_PATH = "tomato_disease_model_v2.h5"
 GDRIVE_URL = "https://drive.google.com/uc?export=download&id=1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"
 
 if not os.path.exists(MODEL_PATH):
-    st.warning("⚠️ Model file not found! Downloading from Google Drive...")
+    st.warning("⚠️ Model file not found! Downloading...")
     try:
         gdown.download(GDRIVE_URL, MODEL_PATH, quiet=False)
         st.success("✅ Model downloaded successfully.")
     except Exception as e:
         st.error(f"❌ Failed to download model: {e}")
         st.stop()
-        
 # Page configuration with custom styling
 st.set_page_config(
     page_title="🍅 Tomato Disease AI Detector",
