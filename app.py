@@ -1,7 +1,14 @@
+try:
+    from tensorflow.keras.models import load_model
+except Exception as e:
+    import streamlit as st
+    st.error(f"TensorFlow import failed: {e}")
+    raise
+
 import streamlit as st
 from PIL import Image
 import numpy as np
-from tensorflow.keras.models import load_model
+
 import json
 import plotly.express as px
 import plotly.graph_objects as go
