@@ -25,24 +25,26 @@ def ensure_model_exists():
 
     if not os.path.exists(MODEL_PATH):
         st.warning("⚠️ Model file not found! Downloading...")
+
         try:
-            gdown.download(GDRIVE_URL, MODEL_PATH, quiet=False)
-            st.success("✅ Model downloaded successfully.")
+            # Use Google Drive file ID, not full URL
+            file_id = "1hxl5shKCJ6qVkcZWDZ28LWxhi6ez-63a"
+            gdown.download(id=file_id, output=MODEL_PATH, quiet=False)
+
+            if os.path.exists(MODEL_PATH):
+                st.success("✅ Model downloaded successfully.")
+            else:
+                st.error("❌ Model file still missing after download.")
+                st.stop()
+
         except Exception as e:
             st.error(f"❌ Failed to download model: {e}")
             st.stop()
-
-    if os.path.exists(MODEL_PATH):
-        st.success("✅ Model file exists after download.")
     else:
-        st.error("❌ Model file still missing after download.")
-        st.stop()
+        st.success("✅ Model file exists.")
 
-if os.path.exists(MODEL_PATH):
-    st.success("✅ Model file exists after download.")
-else:
-    st.error("❌ Model file still missing after download.")
-    st.stop()
+
+
 # Page configuration with custom styling
 st.set_page_config(
     page_title="🍅 Tomato Disease AI Detector",
