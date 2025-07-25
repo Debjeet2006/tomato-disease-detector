@@ -16,8 +16,8 @@ import pandas as pd
 import gdown
 import os
 
-MODEL_PATH = "tomato_disease_model_v2.h5"
-GDRIVE_URL = "https://drive.google.com/uc?export=download&id=1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"
+MODEL_PATH = "tomato_disease_model_v2.keras"
+GDRIVE_URL = "https://drive.google.com/file/d/1hxl5shKCJ6qVkcZWDZ28LWxhi6ez-63a/view?usp=sharing"
 
 def ensure_model_exists():
     st.write("📁 Current working directory:", os.getcwd())
