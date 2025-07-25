@@ -19,18 +19,23 @@ import os
 MODEL_PATH = "tomato_disease_model_v2.h5"
 GDRIVE_URL = "https://drive.google.com/uc?export=download&id=1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"
 
-st.write("📁 Current working directory:", os.getcwd())
+def ensure_model_exists():
+    st.write("📁 Current working directory:", os.getcwd())
+    st.write("📂 Files in current directory before model check:", os.listdir())
 
+    if not os.path.exists(MODEL_PATH):
+        st.warning("⚠️ Model file not found! Downloading...")
+        try:
+            gdown.download(GDRIVE_URL, MODEL_PATH, quiet=False)
+            st.success("✅ Model downloaded successfully.")
+        except Exception as e:
+            st.error(f"❌ Failed to download model: {e}")
+            st.stop()
 
-st.write("📂 Files in current directory before model check:", os.listdir())
-
-if not os.path.exists(MODEL_PATH):
-    st.warning("⚠️ Model file not found! Downloading...")
-    try:
-        gdown.download(GDRIVE_URL, MODEL_PATH, quiet=False)
-        st.success("✅ Model downloaded successfully.")
-    except Exception as e:
-        st.error(f"❌ Failed to download model: {e}")
+    if os.path.exists(MODEL_PATH):
+        st.success("✅ Model file exists after download.")
+    else:
+        st.error("❌ Model file still missing after download.")
         st.stop()
 
 if os.path.exists(MODEL_PATH):
@@ -133,6 +138,8 @@ def load_class_data():
 def load_disease_model():
     ensure_model_exists()
     return load_model(MODEL_PATH)
+    
+model = load_disease_model()
 
 class_names = load_class_data()
 model = load_disease_model()
