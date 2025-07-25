@@ -19,6 +19,11 @@ import os
 MODEL_PATH = "tomato_disease_model_v2.h5"
 GDRIVE_URL = "https://drive.google.com/uc?export=download&id=1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"
 
+st.write("📁 Current working directory:", os.getcwd())
+
+
+st.write("📂 Files in current directory before model check:", os.listdir())
+
 if not os.path.exists(MODEL_PATH):
     st.warning("⚠️ Model file not found! Downloading...")
     try:
@@ -27,6 +32,12 @@ if not os.path.exists(MODEL_PATH):
     except Exception as e:
         st.error(f"❌ Failed to download model: {e}")
         st.stop()
+
+if os.path.exists(MODEL_PATH):
+    st.success("✅ Model file exists after download.")
+else:
+    st.error("❌ Model file still missing after download.")
+    st.stop()
 # Page configuration with custom styling
 st.set_page_config(
     page_title="🍅 Tomato Disease AI Detector",
