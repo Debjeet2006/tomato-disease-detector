@@ -6,6 +6,16 @@ import json
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+import gdown
+import os
+
+MODEL_PATH = "model.h5"
+FILE_ID = "1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"  # Replace with your actual ID
+DOWNLOAD_URL = f"https://drive.google.com/uc?id={FILE_ID}"
+
+if not os.path.exists(MODEL_PATH):
+    with st.spinner("Downloading model..."):
+        gdown.download(DOWNLOAD_URL, MODEL_PATH, quiet=False)
 
 # Page configuration with custom styling
 st.set_page_config(
