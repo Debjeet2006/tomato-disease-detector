@@ -16,14 +16,14 @@ import pandas as pd
 import gdown
 import os
 
-MODEL_PATH = "model.h5"
-FILE_ID = "1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"  # Replace with your actual ID
-DOWNLOAD_URL = f"https://drive.google.com/uc?id={FILE_ID}"
+MODEL_PATH = "tomato_disease_model_v2.h5"
+GDRIVE_URL = "https://drive.google.com/uc?export=download&id=1o1-NZjn-rw4920rY_6WS5ftshH3Tfe1l"
 
 if not os.path.exists(MODEL_PATH):
     with st.spinner("Downloading model..."):
-        gdown.download(DOWNLOAD_URL, MODEL_PATH, quiet=False)
-
+        gdown.download(GDRIVE_URL, MODEL_PATH, quiet=False)
+        st.success("Model downloaded successfully!")
+        
 # Page configuration with custom styling
 st.set_page_config(
     page_title="🍅 Tomato Disease AI Detector",
@@ -118,7 +118,7 @@ def load_class_data():
 @st.cache_resource
 def load_disease_model():
     try:
-        return load_model("model.h5")
+        return load_model("tomato_disease_model_v2.h5")
     except:
         st.error("⚠️ Model file not found! Please ensure 'tomato_disease_model_v2.h5' is in the same directory.")
         return None
