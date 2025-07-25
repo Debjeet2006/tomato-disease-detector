@@ -111,7 +111,7 @@ def load_class_data():
 @st.cache_resource
 def load_disease_model():
     try:
-        return load_model("tomato_disease_model_v2.h5")
+        return load_model("model.h5")
     except:
         st.error("⚠️ Model file not found! Please ensure 'tomato_disease_model_v2.h5' is in the same directory.")
         return None
