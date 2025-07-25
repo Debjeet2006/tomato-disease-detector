@@ -137,7 +137,7 @@ def load_class_data():
 @st.cache_resource
 def load_disease_model():
     ensure_model_exists()
-    return load_model(MODEL_PATH)
+    return load_model(MODEL_PATH,compile=False)
     
 model = load_disease_model()
 
