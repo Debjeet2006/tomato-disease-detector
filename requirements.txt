@@ -1,8 +1,7 @@
-streamlit==1.34.0
-tensorflow==2.13.0
+streamlit
+tensorflow
 numpy
 pillow
-plotly
-pandas
 gdown
-h5py
+matplotlib
+opencv-python
