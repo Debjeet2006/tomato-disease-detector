@@ -4,3 +4,4 @@ protobuf==3.20.*
 gdown
 numpy
 Pillow
+plotly
